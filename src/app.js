@@ -2,7 +2,7 @@ import "dotenv/config";
 import { runMCP } from "./mcp/orchestrator.js";
 
 async function main() {
-  const input = process.argv[2] || "Doanh thu tháng này là bao nhiêu?";
+  const input = process.argv[2] || "What is the revenue for this month?";
 
   const result = await runMCP(input);
 

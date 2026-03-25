@@ -23,10 +23,10 @@ export function buildInitialContext({ userId, locale, appState } = {}) {
       content: [
         "MCP context for user:",
         `userId=${userId || "anonymous"}`,
-        `locale=${locale || "vi-VN"}`,
+        `locale=${locale || "en-US"}`,
         `appState=${JSON.stringify(appState || { environment: "demo" })}`,
-        "\nBusiness rules:\n- Revenue month must be accepted in MM/YYYY format.\n- If month is not provided, get current time using tool.",
-        "\nTool usage example:\nUser: Doanh thu tháng 02/2025 là bao nhiêu?\nAssistant: {\"name\":\"get_revenue\",\"arguments\":\"{\\\"month\\\":\\\"02/2025\\\"}\"}",
+        "\nBusiness rules:\n- Revenue month could be provided by user in any format but need to be converted into MM/YYYY format.\n- If month is not provided, ask the user for month and do not call tools.",
+        "\nTool usage example:\nUser: What is the revenue for 02/2025?\nAssistant: {\"name\":\"get_revenue\",\"arguments\":\"{\\\"month\\\":\\\"02/2025\\\"}\"}",
       ].join("\n"),
     },
     extraMetadata: {

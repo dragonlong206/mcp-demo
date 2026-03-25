@@ -41,7 +41,7 @@ export OPENAI_API_KEY=your_api_key_here
 ### 3. Run a demo
 #### Demo 1
 ```bash
-node src/app.js "Doanh thu tháng 02/2025 là bao nhiêu?"
+node src/app.js "What is the revenue for 02/2025?"
 ```
 
 **Expected output:**
@@ -55,7 +55,7 @@ LLM Response:
     "content": null,
     "tool_calls": [
       {
-        "id": "call_...",
+        "id": "call_",
         "type": "function",
         "function": {
           "name": "get_revenue",
@@ -65,8 +65,11 @@ LLM Response:
         }
       }
     ],
-    "finish_reason": "tool_calls"
-  }
+    "refusal": null,
+    "annotations": []
+  },
+  "logprobs": null,
+  "finish_reason": "tool_calls"
 }
 ```
 
@@ -76,7 +79,7 @@ LLM Response after tool call:
   "index": 0,
   "message": {
     "role": "assistant",
-    "content": "Doanh thu tháng 02/2025 là 150.000.",
+    "content": "The revenue for February 2025 is 150,000.",
     "finish_reason": "stop"
   },
   ...
@@ -85,7 +88,7 @@ LLM Response after tool call:
 
 Final Answer:
 ```
-Doanh thu tháng 02/2025 là 150.000.
+The revenue for February 2025 is 150,000.
 ```
 
 ---
@@ -168,7 +171,7 @@ OpenAI integration:
 ### Example 1: Revenue query with month
 
 ```bash
-node src/app.js "Doanh thu tháng 02/2025 là bao nhiêu?"
+node src/app.js "What is the revenue for 02/2025?"
 ```
 
 **Flow:**
@@ -179,7 +182,7 @@ node src/app.js "Doanh thu tháng 02/2025 là bao nhiêu?"
 ### Example 2: Current time query
 
 ```bash
-node src/app.js "Hôm nay là ngày mấy"
+node src/app.js "What is today's date?"
 ```
 
 **Flow:**
@@ -190,7 +193,7 @@ node src/app.js "Hôm nay là ngày mấy"
 ### Example 3: Query with missing month
 
 ```bash
-node src/app.js "Doanh thu là bao nhiêu?"
+node src/app.js "What is the revenue for this month?"
 ```
 
 **Expected:**
