@@ -45,26 +45,47 @@ node src/app.js "Doanh thu tháng 02/2025 là bao nhiêu?"
 ```
 
 **Expected output:**
-```
-LLM Response: {"index":0,"message":{"role":"assistant","content":null,"tool_calls":[{"id":"call_...","type":"function","function":{"name":"get_revenue","arguments":"{\"month\":\"02/2025\"}"}}],"finish_reason":"tool_calls"}
 
-LLM Response after tool call: {"index":0,"message":{"role":"assistant","content":"Doanh thu tháng 02/2025 là 150.000.","finish_reason":"stop"},...}
+LLM Response:
+```json
+{
+  "index": 0,
+  "message": {
+    "role": "assistant",
+    "content": null,
+    "tool_calls": [
+      {
+        "id": "call_...",
+        "type": "function",
+        "function": {
+          "name": "get_revenue",
+          "arguments": {
+            "month": "02/2025"
+          }
+        }
+      }
+    ],
+    "finish_reason": "tool_calls"
+  }
+}
+```
+
+LLM Response after tool call:
+```json
+{
+  "index": 0,
+  "message": {
+    "role": "assistant",
+    "content": "Doanh thu tháng 02/2025 là 150.000.",
+    "finish_reason": "stop"
+  },
+  ...
+}
+```
 
 Final Answer:
- Doanh thu tháng 02/2025 là 150.000.
 ```
-#### Demo 2 - Tool call 2 times
-```bash
-node src/app.js "Doanh thu tháng này là bao nhiêu?"
-```
-**Expected output:**
-```
-LLM Response: {"index":0,"message":{"role":"assistant","content":null,"tool_calls":[{"id":"call_CyQQAsdYY3c0vl53ilbDdgAv","type":"function","function":{"name":"get_time","arguments":"{}"}}],"refusal":null,"annotations":[]},"logprobs":null,"finish_reason":"tool_calls"}
-LLM Response after tool call: {"index":0,"message":{"role":"assistant","content":null,"tool_calls":[{"id":"call_qfY30jluw01Ltq4QMqX70Q0j","type":"function","function":{"name":"get_revenue","arguments":"{\"month\":\"03/2026\"}"}}],"refusal":null,"annotations":[]},"logprobs":null,"finish_reason":"tool_calls"}
-LLM Response after tool call: {"index":0,"message":{"role":"assistant","content":"Doanh thu tháng 03/2026 là 150,000.","refusal":null,"annotations":[]},"logprobs":null,"finish_reason":"stop"}
-
-Final Answer:
- Doanh thu tháng 03/2026 là 150,000.
+Doanh thu tháng 02/2025 là 150.000.
 ```
 
 ---
@@ -166,15 +187,16 @@ node src/app.js "Hôm nay là ngày mấy"
 - May call time tool if configured
 - Returns current date response
 
-### Example 3: Query with missing context
+### Example 3: Query with missing month
 
 ```bash
 node src/app.js "Doanh thu là bao nhiêu?"
 ```
 
 **Expected:**
-- Context rules ask for month clarification
-- LLM prompts user for `MM/YYYY` format
+- Context rules `If month is not provided, get current time using tool.` => LLM suggests call `get_time` tool
+- Tool return the current month. LLM suggests to call `get_revenue` with current month parameter
+- Returns the revenue of current month
 
 ---
 
