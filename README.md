@@ -190,15 +190,15 @@ node src/app.js "What is today's date?"
 - May call time tool if configured
 - Returns current date response
 
-### Example 3: Query with missing month
+### Example 3: Query with current month
 
 ```bash
 node src/app.js "What is the revenue for this month?"
 ```
 
 **Expected:**
-- Context rules `If month is not provided, get current time using tool.` => LLM suggests call `get_time` tool
-- Tool return the current month. LLM suggests to call `get_revenue` with current month parameter
+- LLM suggests call `get_time` tool to get current month
+- Tool return the current month. LLM suggests to call `get_revenue` tool with current month parameter
 - Returns the revenue of current month
 
 ---
