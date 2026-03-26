@@ -175,7 +175,7 @@ node src/app.js "What is the revenue for 02/2025?"
 ```
 
 **Flow:**
-- LLM identifies month `02/2025` from Vietnamese query
+- LLM identifies month `02/2025` query
 - Calls `get_revenue` with `{"month":"02/2025"}`
 - Returns formatted revenue
 
@@ -186,8 +186,8 @@ node src/app.js "What is today's date?"
 ```
 
 **Flow:**
-- LLM recognizes date query
-- May call time tool if configured
+- LLM recognizes date query and suggests call `get_time` tool
+- Call `get_time` tool
 - Returns current date response
 
 ### Example 3: Query with current month
@@ -198,7 +198,7 @@ node src/app.js "What is the revenue for this month?"
 
 **Expected:**
 - LLM suggests call `get_time` tool to get current month
-- Tool return the current month. LLM suggests to call `get_revenue` tool with current month parameter
+- Call `get_time` tool, return the current month. LLM suggests to call `get_revenue` tool with current month parameter
 - Returns the revenue of current month
 
 ---
