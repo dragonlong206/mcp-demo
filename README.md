@@ -190,7 +190,7 @@ node src/app.js "What is today's date?"
 - Call `get_time` tool
 - Returns current date response
 
-### Example 3: Query with current month
+### Example 3: Revenue query with current month (multiple tool calls)
 
 ```bash
 node src/app.js "What is the revenue for this month?"
